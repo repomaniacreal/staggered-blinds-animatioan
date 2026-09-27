@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgencyHall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f6;
+            color: #111;
+            margin: 0;
+            overflow-x: hidden;
+            /* Hide scrollbar for a cleaner app feel */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .page-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        .page-container.active {
+            display: flex;
+        }
+
+        #blinds-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 9999;
+            pointer-events: none; /* Let clicks pass through when idle */
+        }
+
+        .blind {
+            flex: 1;
+            width: 100%;
+            background-color: #111;
+            transform: scaleY(1);
+            transform-origin: bottom;
+            will-change: transform;
+        }
+
+        /* Helper for the hollow text outline */
+        .text-outline {
+            -webkit-text-stroke: 2px #d1d1d1;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased uppercase selection:bg-[#c4f533] selection:text-[#111]">
+
+    <div id="page-home" class="page-container active relative h-screen justify-between overflow-hidden">
+        
+        <!-- Header -->
+        <header class="flex justify-between items-center z-10 font-semibold tracking-wide text-sm sm:text-base">
+            <div>MENU</div>
+            <div class="flex items-center gap-2 cursor-pointer hover:text-[#c4f533] transition-colors">
+                <span>LET'S TALK</span>
+                <div class="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- Center INSOMIO Logo -->
+        <main class="absolute inset-0 flex items-center justify-center z-0">
+            <div class="flex items-center w-full max-w-[95vw] justify-between px-4 sm:px-12">
+                <!-- Crosshair Left -->
+                <div class="hidden sm:flex relative w-8 h-8 items-center justify-center opacity-50">
+                    <div class="absolute w-full h-[1px] bg-black"></div>
+                    <div class="absolute h-full w-[1px] bg-black"></div>
+                    <div class="absolute w-2 h-2 bg-black"></div>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-[12vw] sm:text-[14vw] font-black tracking-tighter leading-none mx-auto" style="transform: scaleX(1.1);">
+                    AGENCY<span class="inline-block w-[12vw] sm:w-[10vw] h-[8vw] sm:h-[6vw] rounded-full border-[1.5vw] sm:border-[1vw] border-[#111] align-middle -mt-[2vw] mx-1"></span>HALL
+                </h1>
+
+                <!-- Crosshair Right -->
+                <div class="hidden sm:flex relative w-8 h-8 items-center justify-center opacity-50">
+                    <div class="absolute w-full h-[1px] bg-black"></div>
+                    <div class="absolute h-full w-[1px] bg-black"></div>
+                    <div class="absolute w-2 h-2 bg-black"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Links -->
+        <footer class="flex flex-wrap justify-between items-end gap-4 z-10 font-semibold tracking-wide text-xs sm:text-sm">
+            <a href="#" class="hover:underline">HOW IT WORK</a>
+            <a href="#" class="hover:underline">SEO</a>
+            <a href="#" class="hover:underline">MARKETING</a>
+            <a href="#" class="hover:underline">CONTACT US</a>
+        </footer>
+    </div>
+
+    <div id="page-about" class="page-container relative min-h-screen justify-between flex-col">
+        <!-- Header -->
+        <header class="text-center font-bold text-sm tracking-widest mt-4">
+            <span class="block text-xs font-normal mb-1">ABOUT</span>
+            AGENCYHALL
+        </header>
+
+        <!-- Center Text Area -->
+        <main class="flex-grow flex items-center justify-center py-20 relative">
+            <div class="max-w-6xl mx-auto text-center relative">
+                
+                <!-- Sticker -->
+                <div class="absolute -top-12 left-0 sm:left-12 rotate-[-15deg] bg-[#111] text-[#c4f533] px-6 py-2 rounded-md font-bold text-lg shadow-lg z-20">
+                    AGENCYHALL
+                </div>
+
+                <h2 class="text-5xl sm:text-7xl md:text-[5.5rem] font-black tracking-tighter leading-[0.9] uppercase">
+                    We build digital <br> 
+                    experiences to <br>
+                    help you <br>
+                    gr<span class="relative inline-block text-transparent bg-clip-text">
+                        o
+                        <span class="absolute inset-0 border-[6px] border-[#c4f533] rounded-[40px] rotate-[10deg] scale-[1.3]"></span>
+                    </span>w.
+                </h2>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs sm:text-sm font-semibold tracking-wide mb-10 max-w-md mx-auto leading-tight uppercase">
+            A CREATIVE AGENCY DRIVING REAL RESULTS
+        </footer>
+    </div>
+
+    <div id="page-work" class="page-container relative min-h-screen flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center font-bold text-sm sm:text-base border-b border-gray-300 pb-4 mb-8">
+            <div>CASE STUDIES</div>
+            <div class="flex items-center gap-4">
+                <div class="w-16 h-[1px] bg-black hidden sm:block"></div>
+                01
+            </div>
+        </header>
+
+        <!-- Projects Grid -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 flex-grow">
+            
+            <!-- Card 1 -->
+            <div class="group cursor-pointer">
+                <div class="w-full aspect-[4/3] bg-[#e5e5e5] rounded-xl overflow-hidden relative shadow-inner flex items-center justify-center">
+                    <!-- Simulated Image overlay elements -->
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjZGRkIiAvPgo8L3N2Zz4=')] opacity-50"></div>
+                    <!-- Big Neon Logo Simulation -->
+                    <div class="w-32 h-32 border-[8px] border-[#c4f533] rotate-45 flex items-center justify-center relative z-10">
+                         <div class="w-12 h-12 border-[8px] border-[#c4f533] rotate-0"></div>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-black tracking-tighter uppercase">Project Alpha</h3>
+                        <p class="text-sm font-medium mt-1">WEB DEVELOPMENT</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group cursor-pointer pt-0 md:pt-12">
+                <div class="w-full aspect-[4/3] bg-[#d1d5db] rounded-xl overflow-hidden relative shadow-inner flex items-center justify-center">
+                     <div class="absolute inset-0 bg-gradient-to-tr from-[#111] to-transparent opacity-10"></div>
+                     <!-- Simulated Tote Bag Logo -->
+                     <div class="text-[#c4f533] font-bold text-4xl transform -rotate-12 drop-shadow-md">
+                         ⚡ BETA
+                     </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-black tracking-tighter uppercase">Project Beta</h3>
+                        <p class="text-sm font-medium mt-1">BRANDING</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="page-services" class="page-container relative min-h-screen flex-col items-center">
+        <!-- Header -->
+        <header class="text-center font-bold text-sm tracking-widest mt-4 w-full">
+            <span class="block text-xs font-normal mb-1">SERVICES</span>
+            AGENCYHALL
+        </header>
+
+        <!-- Services List -->
+        <main class="flex-grow flex flex-col items-center justify-center w-full py-12 gap-2 sm:gap-4">
+            
+            <div class="relative group cursor-pointer text-center">
+                <h2 class="text-[8vw] sm:text-[6vw] font-black tracking-tighter leading-none hover:text-[#c4f533] transition-colors z-10 relative uppercase">1. Web Design</h2>
+                <span class="absolute -right-8 top-0 text-sm font-bold opacity-50">(01)</span>
+                
+                <!-- Hover Images (Simulated as little gray blocks for demo) -->
+                <div class="absolute left-1/2 -bottom-16 -translate-x-1/2 hidden group-hover:flex gap-2 z-20 pointer-events-none">
+                     <div class="w-20 h-12 bg-[#111] rounded shadow-xl border border-[#c4f533]"></div>
+                     <div class="w-20 h-12 bg-gray-300 rounded shadow-xl"></div>
+                </div>
+            </div>
+
+            <div class="relative group cursor-pointer text-center">
+                <h2 class="text-[8vw] sm:text-[6vw] font-black tracking-tighter leading-none text-[#d1d1d1] hover:text-[#111] transition-colors uppercase">2. SEO</h2>
+                <span class="absolute -right-8 top-0 text-sm font-bold text-[#d1d1d1]">(02)</span>
+            </div>
+
+            <div class="relative group cursor-pointer text-center">
+                <h2 class="text-[8vw] sm:text-[6vw] font-black tracking-tighter leading-none text-[#d1d1d1] hover:text-[#111] transition-colors uppercase">3. Marketing</h2>
+                <span class="absolute -right-8 top-0 text-sm font-bold text-[#d1d1d1]">(03)</span>
+            </div>
+            
+        </main>
+    </div>
+
+    <div id="blinds-overlay">
+        <div class="blind"></div>
+        <div class="blind"></div>
+        <div class="blind"></div>
+        <div class="blind"></div>
+        <div class="blind"></div>
+    </div>
+
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-md rounded-full shadow-2xl flex p-1.5 gap-1 z-[99999] border border-gray-200">
+        <button onclick="navigateTo('page-home', 0)" class="nav-btn px-4 py-2 rounded-full text-xs font-bold hover:bg-gray-100 transition-colors active-nav bg-[#c4f533]">HOME</button>
+        <button onclick="navigateTo('page-about', 1)" class="nav-btn px-4 py-2 rounded-full text-xs font-bold hover:bg-gray-100 transition-colors">ABOUT</button>
+        <button onclick="navigateTo('page-work', 2)" class="nav-btn px-4 py-2 rounded-full text-xs font-bold hover:bg-gray-100 transition-colors">WORK</button>
+        <button onclick="navigateTo('page-services', 3)" class="nav-btn px-4 py-2 rounded-full text-xs font-bold hover:bg-gray-100 transition-colors">SERVICES</button>
+    </nav>
+
+    <script>
+        const pageIds = ['page-home', 'page-about', 'page-work', 'page-services'];
+        let currentPageIndex = 0;
+        let isAnimating = false;
+
+        const blinds = document.querySelectorAll('.blind');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        
+        // Animation config
+        const STAGGER_DELAY = 60; // ms between each blind
+        const ANIMATION_DURATION = 500; // ms for scale transform
+        const TOTAL_IN_TIME = ANIMATION_DURATION + (blinds.length * STAGGER_DELAY); 
+
+        // Initial load animation
+        window.addEventListener('DOMContentLoaded', () => {
+            // Short delay to allow visual rendering before revealing
+            setTimeout(() => {
+                blinds.forEach((blind, index) => {
+                    blind.style.transition = 'none';
+                    blind.style.transformOrigin = 'bottom';
+                    
+                    void blind.offsetWidth; // Reflow
+                    
+                    blind.style.transition = `transform ${ANIMATION_DURATION}ms cubic-bezier(0.76, 0, 0.24, 1) ${index * STAGGER_DELAY}ms`;
+                    blind.style.transform = 'scaleY(0)';
+                });
+            }, 300);
+        });
+
+        function navigateTo(targetId, targetIndex) {
+            if (isAnimating || targetIndex === currentPageIndex) return;
+            isAnimating = true;
+
+            // Update Nav Button States
+            navBtns.forEach((btn, idx) => {
+                if(idx === targetIndex) {
+                    btn.classList.add('bg-[#c4f533]');
+                    btn.classList.remove('hover:bg-gray-100');
+                } else {
+                    btn.classList.remove('bg-[#c4f533]');
+                    btn.classList.add('hover:bg-gray-100');
+                }
+            });
+
+            // Alternate colors for the blinds based on target index to make it interesting
+            // Use black most of the time to match the strong bold branding
+            const blindColor = targetIndex % 2 !== 0 ? '#111' : '#c4f533'; 
+
+            blinds.forEach(blind => {
+                blind.style.backgroundColor = blindColor;
+            });
+
+            // --- PHASE 1: ANIMATE IN (Cover the screen) ---
+            blinds.forEach((blind, index) => {
+                blind.style.transition = 'none';
+                blind.style.transformOrigin = 'top'; // Open from top down
+                
+                // Force a reflow so the browser picks up the origin change before transitioning
+                void blind.offsetWidth; 
+                
+                // Add the transition and scale up
+                blind.style.transition = `transform ${ANIMATION_DURATION}ms cubic-bezier(0.76, 0, 0.24, 1) ${index * STAGGER_DELAY}ms`;
+                blind.style.transform = 'scaleY(1)';
+            });
+
+            // Wait until the screen is fully covered
+            setTimeout(() => {
+                
+                // Hide current page, show target page
+                document.getElementById(pageIds[currentPageIndex]).classList.remove('active');
+                document.getElementById(targetId).classList.add('active');
+                
+                // Update tracker
+                currentPageIndex = targetIndex;
+
+                // --- PHASE 2: ANIMATE OUT (Reveal the new page) ---
+                blinds.forEach((blind, index) => {
+                    blind.style.transition = 'none';
+                    blind.style.transformOrigin = 'bottom'; // Close towards bottom
+                    
+                    void blind.offsetWidth; // Reflow
+                    
+                    blind.style.transition = `transform ${ANIMATION_DURATION}ms cubic-bezier(0.76, 0, 0.24, 1) ${index * STAGGER_DELAY}ms`;
+                    blind.style.transform = 'scaleY(0)';
+                });
+
+                // Unlock navigation after phase 2 completes
+                setTimeout(() => {
+                    isAnimating = false;
+                }, TOTAL_IN_TIME);
+
+            }, TOTAL_IN_TIME);
+        }
+    </script>
+</body>
+</html>
